@@ -1,0 +1,6 @@
+dist/
+dlf_py.egg-info/
+build/
+__pycache__/
+.env
+.venv/

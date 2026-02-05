@@ -19,14 +19,15 @@ def get_data():
     return datetime.now().strftime("%d.%m.%Y")
 
 def setup(time=True, color=True, simple=False, file_logging=False):
-    global useTime, useColor, simpleLog, logFile
+    global useTime, useColor, simpleLog, logFile, LOG_FILENAME
     useTime = time
     useColor = color
     simpleLog = simple
     if file_logging:
         LOG_FILENAME = f"logger-{get_data()}-{get_time()}.log"
         def logFile(msg):
-            return open(LOG_FILENAME, "a").write(msg + "\n")
+            with open(LOG_FILENAME, "a") as log_handle:
+                log_handle.write(msg + "\n")
     else:
         def logFile(msg):
             return None

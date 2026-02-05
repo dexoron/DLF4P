@@ -1,110 +1,109 @@
 # dlf-py — Dexoron Logging Framework for Python
 
-`dlf-py` — это лёгкий и удобный логгер для Python, вдохновлённый **SLF4J**. Он предоставляет простой API для логирования сообщений с поддержкой уровней, цветного вывода, временных меток и записи в файл.
+`dlf-py` is a lightweight and convenient logger for Python inspired by **SLF4J**.
+It provides a simple API for logging messages with support for log levels, colored console output, timestamps, and file logging.
 
-Проект создаётся как часть семейства **DLF (Dexoron Logging Framework)** с перспективой реализации для других языков программирования.
-
----
-
-## Возможности
-
-* Уровни логирования: `DEBUG`, `INFO`, `SUCCESS`, `WARNING`, `ERROR`, `FATAL`
-* Цветной вывод в консоль
-* Отображение времени сообщения
-* Поддержка префиксов (например, имя модуля или компонента)
-* Запись логов в файл
-* Простая настройка через `setup()`
-* Лёгкий и без внешних зависимостей
+The project is being developed as part of the **DLF (Dexoron Logging Framework)** family, with plans for implementations in other programming languages.
 
 ---
 
-## Установка
+## Features
 
-Пока проект находится в разработке. Для использования клонируйте репозиторий:
+* Log levels: `DEBUG`, `INFO`, `SUCCESS`, `WARNING`, `ERROR`, `FATAL`
+* Colored console output
+* Timestamp support
+* Prefix support (e.g., module or component name)
+* File logging
+* Simple configuration via `setup()`
+* Lightweight and with no external dependencies
+
+---
+
+## Installation
+
+Install from PyPI:
 
 ```bash
-git clone https://gitlab.com/dexoron/dlf-py.git
+pip install dlf-py
 ```
-
-И импортируйте модуль `logger.py` в свой проект.
 
 ---
 
-## Быстрый старт
+## Quick Start
 
 ```python
-import logger
+import dlf
 
-logger.setup(time=True, color=True, simple=False, file_logging=True)
+dlf.setup(time=True, color=True, simple=False, file_logging=True)
 
-logger.info("Приложение запущено", "Main")
-logger.success("Сервер успешно стартовал", "Server")
-logger.warning("Медленный ответ", "API")
-logger.error("Ошибка подключения к БД", "Database")
-logger.fatal("Критическая ошибка", "System")
+dlf.info("Application started", "Main")
+dlf.success("Server successfully started", "Server")
+dlf.warning("Slow response", "API")
+dlf.error("Database connection error", "Database")
+dlf.fatal("Critical error", "System")
 ```
 
-Пример вывода в консоль:
+Example console output:
 
 ```
-[12:30:10] [Main/INFO]: Приложение запущено
-[12:30:11] [Server/SUCCESS]: Сервер успешно стартовал
-[12:30:12] [API/WARNING]: Медленный ответ
-[12:30:13] [Database/ERROR]: Ошибка подключения к БД
-[12:30:14] [System/FATAL]: Критическая ошибка
+[12:30:10] [Main/INFO]: Application started
+[12:30:11] [Server/SUCCESS]: Server successfully started
+[12:30:12] [API/WARNING]: Slow response
+[12:30:13] [Database/ERROR]: Database connection error
+[12:30:14] [System/FATAL]: Critical error
 ```
 
-> В файл лог сохраняется без цветовых ANSI-кодов.
+> Logs are saved to a file without ANSI color codes.
 
 ---
 
-## Настройка
+## Configuration
 
-Функция `setup()` используется для конфигурации логгера:
+The `setup()` function is used to configure the logger:
 
 ```python
-logger.setup(
-    time=True,        # отображать время
-    color=True,       # использовать цветной вывод
-    simple=False,     # упрощённый формат логов(без префиксов)
-    file_logging=True # сохранять лог в файл
+dlf.setup(
+    time=True,        # show timestamp
+    color=True,       # enable colored output
+    simple=False,     # simplified log format (without prefixes)
+    file_logging=True # enable file logging
 )
 ```
 
-### Параметры:
+### Parameters:
 
-* `time` — добавлять ли время к сообщению
-* `color` — включить или отключить цвета
-* `simple` — выключить префиксы
-* `file_logging` — включить запись логов в файл
-
----
-
-## Философия
-
-`dlf-py` вдохновлён библиотекой **SLF4J (Simple Logging Facade for Java)** и стремится:
-
-* предоставить единый и простой интерфейс логирования
-* быть минималистичным
-* не зависеть от сторонних библиотек
-* легко расширяться под другие языки программирования
+* `time` — enable or disable timestamps
+* `color` — enable or disable colors
+* `simple` — disable prefixes
+* `file_logging` — enable writing logs to a file
 
 ---
 
-## 📄 Лицензия
+## Philosophy
 
-Проект распространяется под лицензией MIT. Подробности см. в файле `LICENSE`.
+`dlf-py` is inspired by **SLF4J (Simple Logging Facade for Java)** and aims to:
+
+* provide a simple and unified logging interface
+* remain minimalistic
+* have no external dependencies
+* be easily extensible to other programming languages
 
 ---
 
-## 👤 Автор
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+
+## Author
 
 **Dexoron**
 
-GitLub: [https://gitlub.com/dexoron](https://gitlub.com/dexoron)
+GitLab: [https://gitlab.com/dexoron](https://gitlab.com/dexoron)
 GitHub: [https://github.com/dexoron](https://github.com/dexoron)
-site: [https://dexoron.su](https://dexoron.su)
+Website: [https://dexoron.su](https://dexoron.su)
 
 ---
 
-> dlf-py — простой логгер сегодня, полноценный logging framework завтра.
+> dlf-py — a simple logger today, a full logging framework tomorrow.
