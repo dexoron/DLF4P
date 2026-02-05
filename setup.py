@@ -7,14 +7,14 @@ def readme():
 
 
 setup(
-    name="dlf-py",
+    name="dlf4p",
     version="1.1.0",
     author="Dexoron",
     author_email="main@dexoron.su",
     description="Dexoron Logging Framework for Python",
     long_description=readme(),
     long_description_content_type="text/markdown",
-    url="https://gitlab.com/dexoron/dlf-py",
+    url="https://gitlab.com/dexoron/dlf4p",
     packages=find_packages(),
     install_requires=[],
     classifiers=[
@@ -25,7 +25,7 @@ setup(
     keywords="logging logger dlf dexoron",
     project_urls={
         "Homepage": "https://dexoron.su",
-        "Repository": "https://gitlab.com/dexoron/dlf-py",
+        "Repository": "https://gitlab.com/dexoron/dlf4p",
     },
     python_requires=">=3.8",
 )

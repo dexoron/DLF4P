@@ -1,6 +1,6 @@
-# dlf-py — Dexoron Logging Framework for Python
+# dlf4p — Dexoron Logging Framework for Python
 
-`dlf-py` is a lightweight and convenient logger for Python inspired by **SLF4J**.
+`dlf4p` is a lightweight and convenient logger for Python inspired by **SLF4J**.
 It provides a simple API for logging messages with support for log levels, colored console output, timestamps, and file logging.
 
 The project is being developed as part of the **DLF (Dexoron Logging Framework)** family, with plans for implementations in other programming languages.
@@ -24,7 +24,7 @@ The project is being developed as part of the **DLF (Dexoron Logging Framework)*
 Install from PyPI:
 
 ```bash
-pip install dlf-py
+pip install dlf4p
 ```
 
 ---
@@ -32,7 +32,7 @@ pip install dlf-py
 ## Quick Start
 
 ```python
-import dlf
+import dlf4p as dlf 
 
 dlf.setup(time=True, color=True, simple=False, file_logging=True)
 
@@ -81,7 +81,7 @@ dlf.setup(
 
 ## Philosophy
 
-`dlf-py` is inspired by **SLF4J (Simple Logging Facade for Java)** and aims to:
+`dlf4p` is inspired by **SLF4J (Simple Logging Facade for Java)** and aims to:
 
 * provide a simple and unified logging interface
 * remain minimalistic
@@ -106,4 +106,4 @@ Website: [https://dexoron.su](https://dexoron.su)
 
 ---
 
-> dlf-py — a simple logger today, a full logging framework tomorrow.
+> dlf4p — a simple logger today, a full logging framework tomorrow.

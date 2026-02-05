@@ -1,5 +1,5 @@
 dist/
-dlf_py.egg-info/
+dlf4p.egg-info/
 build/
 __pycache__/
 .env
