@@ -5,6 +5,9 @@ It provides a simple API for logging messages with support for log levels, color
 
 The project is being developed as part of the **DLF (Dexoron Logging Framework)** family, with plans for implementations in other programming languages.
 
+GitLab repository: https://gitlab.com/dexoron/dlf4p
+PyPi project: https://pypi.org/project/dlf4p
+
 ---
 
 ## Features
@@ -43,14 +46,39 @@ dlf.error("Database connection error", "Database")
 dlf.fatal("Critical error", "System")
 ```
 
-Example console output:
+Console output:
 
-```
+```log
 [12:30:10] [Main/INFO]: Application started
 [12:30:11] [Server/SUCCESS]: Server successfully started
 [12:30:12] [API/WARNING]: Slow response
 [12:30:13] [Database/ERROR]: Database connection error
 [12:30:14] [System/FATAL]: Critical error
+```
+
+Logger class example:
+
+```python
+import dlf4p as dlf
+
+dlf.setup(time=True, color=True, simple=False, file_logging=True)
+
+log = dlf.Logger("Main")
+log.info("Application started")
+
+log = dlf.Logger("Core")
+log.setLevel(2)  # SUCCESS and higher
+log.info("Core module initialized")
+log.success("Submodule loaded successfully")
+log.warning("Disabled System modules")
+```
+
+Console output:
+
+```log
+[12:30:10] [Main/INFO]: Application started
+[12:30:11] [Core/SUCCESS]: Submodule loaded successfully
+[12:30:12] [Core/WARNING]: Disabled System modules
 ```
 
 > Logs are saved to a file without ANSI color codes.
@@ -79,6 +107,16 @@ dlf.setup(
 
 ---
 
+## Run Example
+
+From the project root:
+
+```bash
+python3 -m test.main
+```
+
+---
+
 ## Philosophy
 
 `dlf4p` is inspired by **SLF4J (Simple Logging Facade for Java)** and aims to:
@@ -103,6 +141,15 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 GitLab: [https://gitlab.com/dexoron](https://gitlab.com/dexoron)
 GitHub: [https://github.com/dexoron](https://github.com/dexoron)
 Website: [https://dexoron.su](https://dexoron.su)
+
+---
+
+## Project Links
+
+Changelog: `CHANGELOG`  
+Contributing guide: `CONTRIBUTING.md`
+GitLab repository: https://gitlab.com/dexoron/dlf4p
+PyPi project: https://pypi.org/project/dlf4p
 
 ---
 

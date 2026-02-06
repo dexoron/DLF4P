@@ -1,0 +1,27 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+## [1.2.0] - 2026-02-06
+### Added
+- Logger class
+- getLogger(name)
+- Module-level logging helpers (`info`, `debug`, `success`, `warning`, `error`, `fatal`)
+- Log levels (0-5) and `setLevel` filtering
+- New module `dlf4p/utils.py`
+- Test script `test/main.py`
+- CONTRIBUTING.md
+
+### Changed
+- Added type annotations in logger API
+- Exported `Logger` from `dlf4p/__init__.py`
+- Fixed internal imports to use package-relative paths
+- Update README.md
+
+## [1.1.1] - 2026-02-06
+### Added
+- Console logging with levels and colors
+- File logging support
+- Configurable output via setup()
+
+### Changed
+- Minor project structure and packaging fixes

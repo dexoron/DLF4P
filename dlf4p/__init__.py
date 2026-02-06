@@ -1,6 +1,7 @@
 """Dexoron Logging Framework (dlf-py)."""
 
 from .logger import (
+    Logger,
     setup,
     debug,
     info,
@@ -11,6 +12,7 @@ from .logger import (
 )
 
 __all__ = [
+    "Logger",
     "setup",
     "debug",
     "info",
@@ -20,4 +22,4 @@ __all__ = [
     "fatal",
 ]
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"

@@ -1,24 +1,22 @@
-from datetime import datetime
+from .utils import (
+    red,
+    green,
+    yellow,
+    reset,
+    bold_red,
+    useTime,
+    useColor,
+    simpleLog,
+    logFile,
+    get_time,
+    get_data,
+    levels,
+    logLevel,
+)
 
-red = "\033[31m"
-green = "\033[32m"
-yellow = "\033[33m"
-reset = "\033[0m"
-bold_red = "\033[1;31m"
-
-useTime = True
-useColor = True
-simpleLog = False
 LOG_FILENAME = None
-def logFile(msg):
-    return None
 
-def get_time():
-    return datetime.now().strftime("%H:%M:%S")
-def get_data():
-    return datetime.now().strftime("%d.%m.%Y")
-
-def setup(time=True, color=True, simple=False, file_logging=False):
+def setup(time: bool=True, color: bool=True, simple: bool=False, file_logging: bool=True):
     global useTime, useColor, simpleLog, logFile, LOG_FILENAME
     useTime = time
     useColor = color
@@ -32,7 +30,7 @@ def setup(time=True, color=True, simple=False, file_logging=False):
         def logFile(msg):
             return None
 
-def _print(level, prefix, content, color=None):
+def _print(level: int, prefix: str, content: str, color: str=None):
     base_msg = ""
 
     if useTime:
@@ -53,21 +51,56 @@ def _print(level, prefix, content, color=None):
     print(console_msg)
     logFile(base_msg)
 
+class Logger:
+    def __init__(self, prefix: str=None):
+        self.prefix = prefix
 
-def debug(content, prefix=None):
+    def getLogger(self, prefix: str):
+        return Logger(prefix)
+    
+    def setLevel(self, level: int):
+        global logLevel
+        logLevel = level
+        _print("INFO", self.prefix, f"Log level set to {levels[level]}")
+
+    def debug(self, content: str):
+        if logLevel <= 0:
+            _print("DEBUG", self.prefix, content)
+        
+    def info(self, content: str):
+        if logLevel <= 1:
+            _print("INFO", self.prefix, content)
+
+    def success(self, content: str):
+        if logLevel <= 2:
+            _print("SUCCESS", self.prefix, content, green)
+
+    def warning(self, content: str):
+        if logLevel <= 3:
+            _print("WARNING", self.prefix, content, yellow)
+
+    def error(self, content: str):
+        if logLevel <= 4:
+            _print("ERROR", self.prefix, content, red)
+
+    def fatal(self, content: str):
+        if logLevel <= 5:
+            _print("FATAL", self.prefix, content, bold_red)
+
+def debug(content: str, prefix: str=None):
     _print("DEBUG", prefix, content)
 
-def info(content, prefix=None):
+def info(content: str, prefix: str=None):
     _print("INFO", prefix, content)
 
-def success(content, prefix=None):
+def success(content: str, prefix: str=None):
     _print("SUCCESS", prefix, content, green)
 
-def warning(content, prefix=None):
+def warning(content: str, prefix: str=None):
     _print("WARNING", prefix, content, yellow)
 
-def error(content, prefix=None):
+def error(content: str, prefix: str=None):
     _print("ERROR", prefix, content, red)
 
-def fatal(content, prefix=None):
+def fatal(content: str, prefix: str=None):
     _print("FATAL", prefix, content, bold_red)

@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name="dlf4p",
-    version="1.1.0",
+    version="1.2.0",
     author="Dexoron",
     author_email="main@dexoron.su",
     description="Dexoron Logging Framework for Python",
