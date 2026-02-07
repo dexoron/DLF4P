@@ -2,6 +2,7 @@
 
 from .logger import (
     Logger,
+    help,
     setup,
     debug,
     info,
@@ -13,6 +14,7 @@ from .logger import (
 )
 
 __all__ = [
+    "help",
     "Logger",
     "setup",
     "debug",
@@ -21,6 +23,7 @@ __all__ = [
     "warning",
     "error",
     "fatal",
+    "exception",
 ]
 
 from .utils import VERSION

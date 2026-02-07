@@ -17,6 +17,42 @@ from .utils import (
 
 LOG_FILENAME = None
 
+def help():
+    print(
+"""Welcome to the Dexoron Logging Framework for Python (DLF4P)!
+Usage:
+    1. Import the library:
+        import dlf4p
+
+    2. Setup the logger (optional):
+        dlf4p.setup(time=True, color=True, simple=False, file_logging=True)
+
+    3. Use loger
+
+    3.1. Use Logger class:
+        dlf = dlf4p.Logger("MyModule")
+
+        dlf.info("This is an info message")
+        dlf.success("This is a success message")
+        dlf.warning("This is a warning message")
+        dlf.error("This is an error message")
+        dlf.debug("This is a debug message")
+
+    3.2 Use global functions:
+        dlf4p.info("This is an info message", prefix="MyModule")
+        dlf4p.success("This is a success message", prefix="MyModule")
+        dlf4p.warning("This is a warning message", prefix="MyModule")
+        dlf4p.error("This is an error message", prefix="MyModule")
+        dlf4p.debug("This is a debug message", prefix="MyModule")
+
+    4. Set log level (optional):
+        dlf.setLevel(2)  # Only log messages with level <= 2 (SUCCESS)
+        # Levels: 0=DEBUG, 1=INFO, 2=SUCCESS, 3=WARNING, 4=ERROR, 5=FATAL
+
+    See the documentation for more details and advanced usage!
+    Senck you for using DLF4P!
+""")
+
 def setup(time: bool=True, color: bool=True, simple: bool=False, file_logging: bool=True):
     global useTime, useColor, simpleLog, logFile, LOG_FILENAME
     useTime = time

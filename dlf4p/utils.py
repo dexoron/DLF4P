@@ -1,6 +1,6 @@
 from datetime import datetime
 
-VERSION = "1.2.1"
+VERSION = "1.2.2"
 
 red = "\033[31m"
 green = "\033[32m"
