@@ -8,6 +8,7 @@ from .logger import (
     success,
     warning,
     error,
+    exception,
     fatal,
 )
 
@@ -22,4 +23,5 @@ __all__ = [
     "fatal",
 ]
 
-__version__ = "1.2.0"
+from .utils import VERSION
+__version__ = VERSION

@@ -1,3 +1,4 @@
+import traceback
 from .utils import (
     red,
     green,
@@ -30,7 +31,7 @@ def setup(time: bool=True, color: bool=True, simple: bool=False, file_logging: b
         def logFile(msg):
             return None
 
-def _print(level: int, prefix: str, content: str, color: str=None):
+def _print(level: int, prefix: str, content: str, color: str=None, exc: Exception=None):
     base_msg = ""
 
     if useTime:
@@ -50,6 +51,14 @@ def _print(level: int, prefix: str, content: str, color: str=None):
 
     print(console_msg)
     logFile(base_msg)
+
+    if exc is not None:
+        base_tb = traceback.format_exc()[:-1]
+        console_tb = red
+        console_tb += base_tb
+        console_tb += reset
+        print(console_tb)
+        logFile(base_tb)
 
 class Logger:
     def __init__(self, prefix: str=None):
@@ -79,13 +88,18 @@ class Logger:
         if logLevel <= 3:
             _print("WARNING", self.prefix, content, yellow)
 
-    def error(self, content: str):
+    def error(self, content: str, exc: Exception=None):
         if logLevel <= 4:
-            _print("ERROR", self.prefix, content, red)
+            _print("ERROR", self.prefix, content, red, exc=exc)
 
-    def fatal(self, content: str):
+    def fatal(self, content: str, exc: Exception=None):
         if logLevel <= 5:
-            _print("FATAL", self.prefix, content, bold_red)
+            _print("FATAL", self.prefix, content, bold_red, exc=exc)
+    
+    def exception(self, content: str, exc: Exception=None):
+        _print("EXCEPTION", self.prefix, content, red, exc=exc)
+
+
 
 def debug(content: str, prefix: str=None):
     _print("DEBUG", prefix, content)
@@ -99,8 +113,11 @@ def success(content: str, prefix: str=None):
 def warning(content: str, prefix: str=None):
     _print("WARNING", prefix, content, yellow)
 
-def error(content: str, prefix: str=None):
-    _print("ERROR", prefix, content, red)
+def error(content: str, prefix: str=None, exc: Exception=None):
+    _print("ERROR", prefix, content, red, exc=exc)
 
-def fatal(content: str, prefix: str=None):
-    _print("FATAL", prefix, content, bold_red)
+def fatal(content: str, prefix: str=None, exc: Exception=None):
+    _print("FATAL", prefix, content, bold_red, exc=exc)
+
+def exception(content: str, prefix: str=None, exc: Exception=None):
+    _print("EXCEPTION", prefix, content, red, exc=exc)

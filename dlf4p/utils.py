@@ -1,5 +1,7 @@
 from datetime import datetime
 
+VERSION = "1.2.1"
+
 red = "\033[31m"
 green = "\033[32m"
 yellow = "\033[33m"
@@ -17,5 +19,5 @@ def get_time():
 def get_data():
     return datetime.now().strftime("%d.%m.%Y")
 
-levels = ["DEBUG", "INFO", "SUCCESS", "WARNING", "ERROR", "FATAL"]
+levels = ["DEBUG", "INFO", "SUCCESS", "WARNING", "ERROR", "FATAL", "EXCEPTION"]
 logLevel = 0

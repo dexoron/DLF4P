@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.1] - 2026-02-07
+### Added
+- Traceback output support for exceptions (experimental)
+- `exception()` logging helper (module-level and Logger)
+
+### Changed
+- `error()` and `fatal()` now accept an optional `exc` argument
+
 ## [1.2.0] - 2026-02-06
 ### Added
 - Logger class

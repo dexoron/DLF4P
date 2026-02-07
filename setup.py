@@ -1,4 +1,5 @@
 from setuptools import find_packages, setup
+from dlf4p.utils import VERSION
 
 
 def readme():
@@ -8,7 +9,7 @@ def readme():
 
 setup(
     name="dlf4p",
-    version="1.2.0",
+    version=VERSION,
     author="Dexoron",
     author_email="main@dexoron.su",
     description="Dexoron Logging Framework for Python",

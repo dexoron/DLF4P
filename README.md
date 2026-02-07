@@ -12,12 +12,14 @@ PyPi project: https://pypi.org/project/dlf4p
 
 ## Features
 
-* Log levels: `DEBUG`, `INFO`, `SUCCESS`, `WARNING`, `ERROR`, `FATAL`
+* Log levels: `DEBUG`, `INFO`, `SUCCESS`, `WARNING`, `ERROR`, `FATAL`, `EXCEPTION`
 * Colored console output
 * Timestamp support
 * Prefix support (e.g., module or component name)
 * File logging
 * Simple configuration via `setup()`
+* Traceback output for exceptions
+* Exception logging helper: `exception()`
 * Lightweight and with no external dependencies
 
 ---
@@ -44,16 +46,32 @@ dlf.success("Server successfully started", "Server")
 dlf.warning("Slow response", "API")
 dlf.error("Database connection error", "Database")
 dlf.fatal("Critical error", "System")
+
+try:
+    1 / 0
+except Exception as e:
+    dlf.error("Division failed", "Math", exc=e)
+    dlf.exception("Unhandled error", "Math", exc=e)
 ```
 
 Console output:
 
 ```log
-[12:30:10] [Main/INFO]: Application started
-[12:30:11] [Server/SUCCESS]: Server successfully started
-[12:30:12] [API/WARNING]: Slow response
-[12:30:13] [Database/ERROR]: Database connection error
-[12:30:14] [System/FATAL]: Critical error
+[14:24:56] [Main/INFO]: Application started
+[14:24:56] [Server/SUCCESS]: Server successfully started
+[14:24:56] [API/WARNING]: Slow response
+[14:24:56] [Database/ERROR]: Database connection error
+[14:24:56] [System/FATAL]: Critical error
+[14:24:56] [Math/ERROR]: Division failed
+Traceback (most recent call last):
+  File "/home/probrovova/project/dlf-py/test/main.py", line 30, in <module>
+    1 / 0
+ZeroDivisionError: division by zero
+[14:24:56] [Math/EXCEPTION]: Unhandled error
+Traceback (most recent call last):
+  File "/home/probrovova/project/dlf-py/test/main.py", line 30, in <module>
+    1 / 0
+ZeroDivisionError: division by zero
 ```
 
 Logger class example:
@@ -71,17 +89,29 @@ log.setLevel(2)  # SUCCESS and higher
 log.info("Core module initialized")
 log.success("Submodule loaded successfully")
 log.warning("Disabled System modules")
+
+try:
+    raise ValueError("Bad value")
+except Exception as e:
+    log.exception("Something went wrong", exc=e)
 ```
 
 Console output:
 
 ```log
-[12:30:10] [Main/INFO]: Application started
-[12:30:11] [Core/SUCCESS]: Submodule loaded successfully
-[12:30:12] [Core/WARNING]: Disabled System modules
+[14:26:59] [Main/INFO]: Application started
+[14:26:59] [Core/INFO]: Log level set to SUCCESS
+[14:26:59] [Core/SUCCESS]: Submodule loaded successfully
+[14:26:59] [Core/WARNING]: Disabled System modules
+[14:26:59] [Core/EXCEPTION]: Something went wrong
+Traceback (most recent call last):
+  File "/home/probrovova/project/dlf-py/test/main.py", line 31, in <module>
+    raise ValueError("Bad value")
+ValueError: Bad value
 ```
 
 > Logs are saved to a file without ANSI color codes.
+> Traceback output requires an active exception (inside an `except` block).
 
 ---
 
