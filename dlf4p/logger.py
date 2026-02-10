@@ -1,25 +1,19 @@
-import traceback
 from .utils import (
+    format_log,
+)
+from .config import (
     red,
     green,
     yellow,
-    reset,
     bold_red,
-    useTime,
-    useColor,
-    simpleLog,
-    logFile,
-    get_time,
-    get_data,
+    log_level,
     levels,
-    logLevel,
 )
 
-LOG_FILENAME = None
 
 def help():
     print(
-"""Welcome to the Dexoron Logging Framework for Python (DLF4P)!
+        """Welcome to the Dexoron Logging Framework for Python (DLF4P)!
 Usage:
     1. Import the library:
         import dlf4p
@@ -51,109 +45,83 @@ Usage:
 
     See the documentation for more details and advanced usage!
     Senck you for using DLF4P!
-""")
+"""
+    )
 
-def setup(time: bool=True, color: bool=True, simple: bool=False, file_logging: bool=True):
-    global useTime, useColor, simpleLog, logFile, LOG_FILENAME
-    useTime = time
-    useColor = color
-    simpleLog = simple
-    if file_logging:
-        LOG_FILENAME = f"logger-{get_data()}-{get_time()}.log"
-        def logFile(msg):
-            with open(LOG_FILENAME, "a") as log_handle:
-                log_handle.write(msg + "\n")
-    else:
-        def logFile(msg):
-            return None
-
-def _print(level: int, prefix: str, content: str, color: str=None, exc: Exception=None):
-    base_msg = ""
-
-    if useTime:
-        base_msg += f"[{get_time()}] "
-
-    if simpleLog or not prefix:
-        base_msg += f"[{level}]"
-    else:
-        base_msg += f"[{prefix}/{level}]"
-
-    base_msg += f": {str(content)}"
-
-    if useColor and color:
-        console_msg = f"{color}{base_msg}{reset}"
-    else:
-        console_msg = base_msg
-
-    print(console_msg)
-    logFile(base_msg)
-
-    if exc is not None:
-        base_tb = traceback.format_exc()[:-1]
-        console_tb = red
-        console_tb += base_tb
-        console_tb += reset
-        print(console_tb)
-        logFile(base_tb)
 
 class Logger:
-    def __init__(self, prefix: str=None):
+    def __init__(self, prefix: str = ""):
         self.prefix = prefix
 
     def getLogger(self, prefix: str):
         return Logger(prefix)
-    
+
     def setLevel(self, level: int):
-        global logLevel
-        logLevel = level
-        _print("INFO", self.prefix, f"Log level set to {levels[level]}")
+        global log_level
+        log_level = level
+        format_log(
+            "INFO",
+            self.prefix,
+            f"Log level set to {levels[level]}",
+        )
 
-    def debug(self, content: str):
-        if logLevel <= 0:
-            _print("DEBUG", self.prefix, content)
-        
-    def info(self, content: str):
-        if logLevel <= 1:
-            _print("INFO", self.prefix, content)
+    def debug(self, msg: str, exc: Exception | None = None):
+        if log_level <= 0:
+            format_log("DEBUG", self.prefix, msg, exc=exc)
 
-    def success(self, content: str):
-        if logLevel <= 2:
-            _print("SUCCESS", self.prefix, content, green)
+    def info(self, msg: str, exc: Exception | None = None):
+        if log_level <= 1:
+            format_log("INFO", self.prefix, msg, exc=exc)
 
-    def warning(self, content: str):
-        if logLevel <= 3:
-            _print("WARNING", self.prefix, content, yellow)
+    def success(self, msg: str, exc: Exception | None = None):
+        if log_level <= 2:
+            format_log("SUCCESS", self.prefix, msg, green, exc=exc)
 
-    def error(self, content: str, exc: Exception=None):
-        if logLevel <= 4:
-            _print("ERROR", self.prefix, content, red, exc=exc)
+    def warning(self, msg: str, exc: Exception | None = None):
+        if log_level <= 3:
+            format_log("WARNING", self.prefix, msg, yellow, exc=exc)
 
-    def fatal(self, content: str, exc: Exception=None):
-        if logLevel <= 5:
-            _print("FATAL", self.prefix, content, bold_red, exc=exc)
-    
-    def exception(self, content: str, exc: Exception=None):
-        _print("EXCEPTION", self.prefix, content, red, exc=exc)
+    def error(self, msg: str, exc: Exception | None = None):
+        if log_level <= 4:
+            format_log("ERROR", self.prefix, msg, red, exc=exc)
+
+    def fatal(self, msg: str, exc: Exception | None = None):
+        if log_level <= 5:
+            format_log("FATAL", self.prefix, msg, bold_red, exc=exc)
+
+    def exception(self, msg: str, exc: Exception | None = None):
+        format_log("EXCEPTION", self.prefix, msg, red, exc=exc)
 
 
+def debug(msg: str, prefix: str = "", exc: Exception | None = None):
+    if log_level <= 0:
+        format_log("DEBUG", prefix, msg, exc=exc)
 
-def debug(content: str, prefix: str=None):
-    _print("DEBUG", prefix, content)
 
-def info(content: str, prefix: str=None):
-    _print("INFO", prefix, content)
+def info(msg: str, prefix: str = "", exc: Exception | None = None):
+    if log_level <= 1:
+        format_log("INFO", prefix, msg, exc=exc)
 
-def success(content: str, prefix: str=None):
-    _print("SUCCESS", prefix, content, green)
 
-def warning(content: str, prefix: str=None):
-    _print("WARNING", prefix, content, yellow)
+def success(msg: str, prefix: str = "", exc: Exception | None = None):
+    if log_level <= 2:
+        format_log("SUCCESS", prefix, msg, green, exc=exc)
 
-def error(content: str, prefix: str=None, exc: Exception=None):
-    _print("ERROR", prefix, content, red, exc=exc)
 
-def fatal(content: str, prefix: str=None, exc: Exception=None):
-    _print("FATAL", prefix, content, bold_red, exc=exc)
+def warning(msg: str, prefix: str = "", exc: Exception | None = None):
+    if log_level <= 3:
+        format_log("WARNING", prefix, msg, yellow, exc=exc)
 
-def exception(content: str, prefix: str=None, exc: Exception=None):
-    _print("EXCEPTION", prefix, content, red, exc=exc)
+
+def error(msg: str, prefix: str = "", exc: Exception | None = None):
+    if log_level <= 4:
+        format_log("ERROR", prefix, msg, red, exc=exc)
+
+
+def fatal(msg: str, prefix: str = "", exc: Exception | None = None):
+    if log_level <= 5:
+        format_log("FATAL", prefix, msg, bold_red, exc=exc)
+
+
+def exception(msg: str, prefix: str = "", exc: Exception | None = None):
+    format_log("EXCEPTION", prefix, msg, red, exc=exc)

@@ -1,0 +1,12 @@
+{
+    "custom_prefix": "",
+    "custom_prefix_disc": "Хотите ли задать свой лог? Пример: '{color}[{time}] [{prefix}/{level}]: {msg}{reset_color}'",
+    "use_time": true,
+    "use_time_disc": "Писать время в лог?",
+    "use_color": true,
+    "use_color_disc": "Использовать цвета в консоли?",
+    "use_file_logging": true,
+    "use_file_logging_disc": "Логировать консоль в файл?",
+    "log_filename": "logger-{get_data}-{get_time}.log",
+    "log_filename_disc": "Имя файла лога"
+}

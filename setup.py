@@ -1,5 +1,5 @@
 from setuptools import find_packages, setup
-from dlf4p.utils import VERSION
+from dlf4p.config import VERSION
 
 
 def readme():
@@ -27,8 +27,8 @@ setup(
         "Programming Language :: Python :: 3.13",
         "Programming Language :: Python :: 3.14",
         "Programming Language :: Python :: 3.15",
-        'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Independent',
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
     ],
     keywords="logging logger dlf dexoron",
     project_urls={

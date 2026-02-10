@@ -17,7 +17,7 @@ PyPi project: https://pypi.org/project/dlf4p
 * Timestamp support
 * Prefix support (e.g., module or component name)
 * File logging
-* Simple configuration via `setup()`
+* Configuration via `dlf_settings.json`
 * Traceback output for exceptions
 * Exception logging helper: `exception()`
 * Lightweight and with no external dependencies
@@ -37,9 +37,7 @@ pip install dlf4p
 ## Quick Start
 
 ```python
-import dlf4p as dlf 
-
-dlf.setup(time=True, color=True, simple=False, file_logging=True)
+import dlf4p as dlf
 
 dlf.info("Application started", "Main")
 dlf.success("Server successfully started", "Server")
@@ -79,8 +77,6 @@ Logger class example:
 ```python
 import dlf4p as dlf
 
-dlf.setup(time=True, color=True, simple=False, file_logging=True)
-
 log = dlf.Logger("Main")
 log.info("Application started")
 
@@ -111,29 +107,34 @@ ValueError: Bad value
 ```
 
 > Logs are saved to a file without ANSI color codes.
-> Traceback output requires an active exception (inside an `except` block).
+> Traceback output uses the provided `exc` object.
 
 ---
 
 ## Configuration
 
-The `setup()` function is used to configure the logger:
+Configuration is loaded from `dlf_settings.json` in the current working directory.
+If the file does not exist, it will be created with defaults on first import.
 
-```python
-dlf.setup(
-    time=True,        # show timestamp
-    color=True,       # enable colored output
-    simple=False,     # simplified log format (without prefixes)
-    file_logging=True # enable file logging
-)
+Example `dlf_settings.json`:
+
+```json
+{
+  "custom_prefix": "",
+  "use_time": true,
+  "use_color": true,
+  "use_file_logging": true,
+  "log_filename": "log-{get_data}-{get_time}.log"
+}
 ```
 
-### Parameters:
+### Fields:
 
-* `time` — enable or disable timestamps
-* `color` — enable or disable colors
-* `simple` — disable prefixes
-* `file_logging` — enable writing logs to a file
+* `custom_prefix` — custom format string (empty string uses default format)
+* `use_time` — enable or disable timestamps
+* `use_color` — enable or disable colors
+* `use_file_logging` — enable writing logs to a file
+* `log_filename` — template for log file name, supports `{get_data}` and `{get_time}`
 
 ---
 

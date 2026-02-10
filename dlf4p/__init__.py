@@ -3,7 +3,6 @@
 from .logger import (
     Logger,
     help,
-    setup,
     debug,
     info,
     success,
@@ -16,7 +15,6 @@ from .logger import (
 __all__ = [
     "help",
     "Logger",
-    "setup",
     "debug",
     "info",
     "success",
@@ -26,5 +24,6 @@ __all__ = [
     "exception",
 ]
 
-from .utils import VERSION
+from .config import VERSION
+
 __version__ = VERSION

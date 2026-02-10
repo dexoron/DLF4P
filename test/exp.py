@@ -1,6 +1,5 @@
 import dlf4p
 
-dlf4p.setup(time=True, color=True, simple=False, file_logging=True)
 dlf = dlf4p.Logger("Core")
 try:
     value = int(input("Enter number: "))
@@ -14,7 +13,7 @@ except Exception as e:
 
 try:
     a = 2
-    b = 'two'
+    b = "two"
     dlf.info(f"Add {a} and {b}")
     print(a + b)
 except Exception as e:
