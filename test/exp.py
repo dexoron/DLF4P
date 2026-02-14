@@ -1,3 +1,4 @@
+# type: ignore
 import dlf4p
 
 dlf = dlf4p.Logger("Core")

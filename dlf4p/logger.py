@@ -18,10 +18,10 @@ Usage:
     1. Import the library:
         import dlf4p
 
-    2. Setup the logger (optional):
-        dlf4p.setup(time=True, color=True, simple=False, file_logging=True)
+    2. Configure logger behavior (optional):
+        edit dlf_settings.json in your project directory
 
-    3. Use loger
+    3. Use logger
 
     3.1. Use Logger class:
         dlf = dlf4p.Logger("MyModule")
@@ -40,11 +40,11 @@ Usage:
         dlf4p.debug("This is a debug message", prefix="MyModule")
 
     4. Set log level (optional):
-        dlf.setLevel(2)  # Only log messages with level <= 2 (SUCCESS)
-        # Levels: 0=DEBUG, 1=INFO, 2=SUCCESS, 3=WARNING, 4=ERROR, 5=FATAL
+        dlf.setLevel(2)  # Shows SUCCESS and higher severity logs
+        # Levels: 0=DEBUG, 1=INFO, 2=SUCCESS, 3=WARNING, 4=ERROR, 5=FATAL, 6=EXCEPTION
 
     See the documentation for more details and advanced usage!
-    Senck you for using DLF4P!
+    Thank you for using DLF4P!
 """
     )
 

@@ -1,8 +1,9 @@
 dist/
 dlf4p.egg-info/
+.ruff_cache/
 build/
 __pycache__/
 .env
 .venv/
 log-*
-logger-@
+logger-*

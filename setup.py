@@ -18,6 +18,9 @@ setup(
     url="https://gitlab.com/dexoron/dlf4p",
     packages=find_packages(),
     install_requires=[],
+    extras_require={
+        "dev": ["pytest", "ruff"],
+    },
     classifiers=[
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",

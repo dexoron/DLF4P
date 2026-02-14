@@ -148,6 +148,16 @@ python3 -m test.main
 
 ---
 
+## Testing
+
+Run automated tests with `pytest`:
+
+```bash
+python -m pytest -q
+```
+
+---
+
 ## Philosophy
 
 `dlf4p` is inspired by **SLF4J (Simple Logging Facade for Java)** and aims to:

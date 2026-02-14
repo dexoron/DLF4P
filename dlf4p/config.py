@@ -8,7 +8,7 @@ try:
 
 except FileNotFoundError:
     settings = """{
-    "custom_prefix": "{color}[{time}] [{prefix}/{level}]: {msg}{reset_color}",
+    "custom_prefix": "",
     "custom_prefix_disc": "Хотите ли задать свой лог? Пример: '{color}!!![{time}] [{prefix}/{level}]: {msg}{reset_color}'",
     "use_time": true,
     "use_time_disc": "Писать время в лог?",

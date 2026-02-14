@@ -37,7 +37,12 @@ python3 -m test.main
 
 ## Tests and code quality
 
-There are currently no configured tests or linters. If you add tests/tools, please describe in your MR how to run them.
+Run checks locally before opening MR/PR:
+
+```bash
+ruff check .
+python -m pytest -q
+```
 
 The recommended style is PEP 8 and readability. Please:
 - do not break public API without discussion;
@@ -51,7 +56,7 @@ The recommended style is PEP 8 and readability. Please:
 
 ## Releases and versions
 
-1. Keep the version in sync in `setup.py` and `dlf4p/__init__.py`.
+1. Update `VERSION` in `dlf4p/config.py`.
 2. Before a release, update `CHANGELOG` (new version section and date).
 
 ## Build and publish
